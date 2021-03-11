@@ -19,10 +19,11 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	@Override
 	protected UserDetailsService userDetailsService() {
-		
-		List<UserDetails> users= new ArrayList<>();
+
+		List<UserDetails> users = new ArrayList<>();
 		users.add(User.withDefaultPasswordEncoder().username("user").password("user").roles("USER").build());
-	return new InMemoryUserDetailsManager(users);
+        users.add(User.withDefaultPasswordEncoder().username("admin").password("admin").roles("ADMIN").build());
+		return new InMemoryUserDetailsManager(users);
 	}
 
 }
